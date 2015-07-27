@@ -3,6 +3,8 @@ Complete Objective-C source code for iOS iPhone app project code "Looking Glass"
 
 Full source code for the Looking Glass project. Pulls address and location data from several external sources like your locally-stored contacts, facebook, linkedIn and others, and geo-codes this informatoin to make it fully queryable. Relies on the Core Data framework combined with proprietary technology to facilitate data queries on geo codes.
 
+Includes a rich extensions of the standard TableView and TableViewCell objects, adding a rich library of add thumbnail images and various types of image notation, and multi-threaded TableViewCell data population.
+
 Functional Examples of:
  Device state self-awareness: battery life, connectivity, device model and iOS version
  iCloud integration
