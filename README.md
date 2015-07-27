@@ -6,7 +6,7 @@ Full source code for the Looking Glass project. Pulls address and location data 
 Functional Examples of:
  oAuth federated authentication using Facebook and LinkedIn profile.
  Several working examples of graphics animation and image management and manipulation.
- Facebook profile and Checking API's.
+ Facebook profile and Checkin API's.
  LinkedIn API's.
  Integration to iOS Contacts and Calendar.
  Objective-C Protocol example (aka polymorphism) for common data integrator.
