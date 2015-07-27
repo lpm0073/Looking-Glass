@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Attendee" representedClassName="Attendee" syncable="YES">
+        <attribute name="datafeedtype_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="unique_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attendee_Checkin" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Checkin" inverseName="checkin_Attendee" inverseEntity="Checkin" syncable="YES"/>
+        <relationship name="attendee_Person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="person_Attendee" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="Checkin" representedClassName="Checkin" syncable="YES">
+        <attribute name="application_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="datafeedtype_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="thumbnailurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="checkin_Attendee" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attendee" inverseName="attendee_Checkin" inverseEntity="Attendee" syncable="YES"/>
+        <relationship name="checkin_Mapitem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MapItem" inverseName="mapitem_Checkin" inverseEntity="MapItem" syncable="YES"/>
+        <relationship name="checkin_Person" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="person_Checkin" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="MapItem" representedClassName="MapItem" syncable="YES">
+        <attribute name="checkincount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="datafeedtype_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="distancefromlastlocation" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="geocodeaccuracy" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="locality" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="postalcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reversegeocoded" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mapitem_Checkin" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Checkin" inverseName="checkin_Mapitem" inverseEntity="Checkin" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName="Person" syncable="YES">
+        <attribute name="current_location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="datafeedtype_id" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="distancefromlastlocation" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hometown_location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isfacebookfriend" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locale" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="middle_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profile_update_time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="thumbnailurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unique_id" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="person_Attendee" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attendee" inverseName="attendee_Person" inverseEntity="Attendee" syncable="YES"/>
+        <relationship name="person_Checkin" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Checkin" inverseName="checkin_Person" inverseEntity="Checkin" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Attendee" positionX="-134289" positionY="1746" width="128" height="105"/>
+        <element name="Checkin" positionX="-134406" positionY="1377" width="126" height="180"/>
+        <element name="MapItem" positionX="-134190" positionY="1059" width="128" height="330"/>
+        <element name="Person" positionX="-133877" positionY="1377" width="128" height="315"/>
+    </elements>
+</model>
