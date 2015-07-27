@@ -15,7 +15,7 @@ Functional Examples of:
  Multi-Language using pLists.
  Custom Animated Shopping cart framework.
  Various examples of JSON file construction, parsing, editing, validation.
- Apple iOS frameworks
+ Apple iOS frameworks used:
 	 AddressBookUI
 	 StoreKit
 	 AVFoundation
