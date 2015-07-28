@@ -400,6 +400,7 @@
             if ([[placemarks objectAtIndex:0] respondsToSelector:@selector(location)]) {
                 
                 CGFloat latitude = [[placemarks objectAtIndex:0] location].coordinate.latitude;
+                
                 CGFloat longitude = [[placemarks objectAtIndex:0] location].coordinate.longitude;
                 
                 if (fabs(latitude) > 0.1 && fabs(longitude) > 0.1) {
@@ -517,7 +518,7 @@
         if (error){
             CLError coreLocationError = (CLError)error;
             if (coreLocationError != kCLErrorGeocodeFoundPartialResult) {
-               if (OBJECT_DEBUG) NSLog(@"mapItem.reverseGeocode() - bad results: %@  %@", [[placemarks objectAtIndex:0] description], (CLError)error);
+               if (OBJECT_DEBUG) NSLog(@"mapItem.reverseGeocode() - bad results: %@  %ld", [[placemarks objectAtIndex:0] description], (long)error);
                 
                 [placemarks release];
                 return;
@@ -789,7 +790,7 @@
     //       that would be returned in a location query searching for objects within range of location.
     //
     //================================================================================================================================================
-    if (OBJECT_DEBUG) [MapItem logObjectVariables:[NSString stringWithFormat:@"updateDistanceFromLastLocation(%f, %f):ForRange(%d):inManagedObjectContext()", location.coordinate.latitude, location.coordinate.longitude, range]];
+    if (OBJECT_DEBUG) [MapItem logObjectVariables:[NSString stringWithFormat:@"updateDistanceFromLastLocation(%f, %f):ForRange(%ld):inManagedObjectContext()", location.coordinate.latitude, location.coordinate.longitude, (long)range]];
     
     NSUserDefaults *defaults = nil;
     BOOL canProcess = YES;
@@ -926,7 +927,7 @@
     arr                     = [[[context executeFetchRequest:request error:&error] copy] retain]; 
     [context unlock];
     
-    NSLog(@"mapItems: %d", arr.count);
+    NSLog(@"mapItems: %lu", (unsigned long)arr.count);
     NSInteger i = 0;
     NSInteger j = 0;
     NSInteger k = 0;
@@ -948,7 +949,7 @@
     [request release];
     [arr release];
     [appDelegate release];
-    NSLog(@"none: %d country: %d State: %d City: %d Postal Code: %d Municipality: %d Street: %d", i, j, k, l, m, n, o);
+    NSLog(@"none: %ld country: %ld State: %ld City: %ld Postal Code: %ld Municipality: %ld Street: %ld", (long)i, (long)j, (long)k, (long)l, (long)m, (long)n, (long)o);
 
     
     
@@ -973,7 +974,7 @@
     arr                     = [[[context executeFetchRequest:request error:&error] copy] retain]; 
     [context unlock];
     
-    NSLog(@"refreshAllMapitemsInManagedObjectContext: %d", arr.count);
+    NSLog(@"refreshAllMapitemsInManagedObjectContext: %lu", (unsigned long)arr.count);
 
     [arr makeObjectsPerformSelector:@selector(retain)];
     [arr makeObjectsPerformSelector:@selector(doHousekeeping)];

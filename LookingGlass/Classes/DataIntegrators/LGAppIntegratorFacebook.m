@@ -128,8 +128,8 @@ static NSString* kFBAppAccessToken = @"237187503009894|VnHS8P8pu45Z1MBJ6UMYh6-br
         Person *checkin_person = [[Person initWithPersonId:[[checkinDictionary objectForKey:@"author_uid"] stringValue] inManagedObjectContext:self.managedObjectContext] retain];
         MapItem *checkin_mapItem = [[MapItem initWithMapItemId:[[checkinDictionary objectForKey:@"page_id"] stringValue] inManagedObjectContext:self.managedObjectContext] retain];
 
-        myCheckin.Checkin_Person    = checkin_person;        
-        myCheckin.Checkin_Mapitem   = checkin_mapItem;
+        myCheckin.checkin_Person    = checkin_person;
+        myCheckin.checkin_Mapitem   = checkin_mapItem;
         
         if (OBJECT_DEBUG) [self logObjectVariables:[NSString stringWithFormat:@"insertCheckinForCheckinDictionary:fromDictionary(%@):PlaceDictionary(%@)", checkin_person.unique_id, checkin_mapItem.unique_id]];
         [checkin_person release];
@@ -206,8 +206,8 @@ static NSString* kFBAppAccessToken = @"237187503009894|VnHS8P8pu45Z1MBJ6UMYh6-br
             checkin.thumbnailurl      = myPerson.thumbnailurl;
             
             //relationships....
-            checkin.Checkin_Person    = myPerson;        
-            checkin.Checkin_Mapitem   = mapItem;
+            checkin.checkin_Person    = myPerson;
+            checkin.Checkin_checkin_MapitemItem;
             
             [checkin release];
             [mapItem release];
@@ -641,7 +641,7 @@ static NSString* kFBAppAccessToken = @"237187503009894|VnHS8P8pu45Z1MBJ6UMYh6-br
 {
     if (!self.canProcessRequest || !location) return NO;
     if ([super getPlacesWithinDistance:distance fromLocation:location withCycleTest:test]) {
-        if (OBJECT_DEBUG) [self logObjectVariables:[NSString stringWithFormat:@"downloadPlacesWithinDistance(%d):fromLocation(%f, %f)", distance, location.coordinate.latitude, location.coordinate.longitude]];
+        if (OBJECT_DEBUG) [self logObjectVariables:[NSString stringWithFormat:@"downloadPlacesWithinDistance(%ld):fromLocation(%f, %f)", (long)distance, location.coordinate.latitude, location.coordinate.longitude]];
         
         //lookup coordinate from the most recent query
         NSUserDefaults *defaults = [[NSUserDefaults standardUserDefaults] retain];
@@ -668,7 +668,7 @@ static NSString* kFBAppAccessToken = @"237187503009894|VnHS8P8pu45Z1MBJ6UMYh6-br
         if (OBJECT_DEBUG) [self logObjectVariables:@"downloadPlacesWithinDistance:fromLocation"];
         if (self.fromDistance > 50000) self.fromDistance = 50000;  //this is Facebook's range limit for their distance() fql function
         
-        NSString *fql = [NSString stringWithFormat:@"SELECT page_id, name, description, geometry, latitude, longitude, checkin_count, display_subtext FROM place WHERE distance(latitude, longitude, %C%f%C, %C%f%C) < %d", (unichar) 0x0022, latitude, (unichar) 0x0022, (unichar) 0x0022, longitude, (unichar) 0x0022, self.fromDistance];
+        NSString *fql = [NSString stringWithFormat:@"SELECT page_id, name, description, geometry, latitude, longitude, checkin_count, display_subtext FROM place WHERE distance(latitude, longitude, %C%f%C, %C%f%C) < %ld", (unichar) 0x0022, latitude, (unichar) 0x0022, (unichar) 0x0022, longitude, (unichar) 0x0022, (long)self.fromDistance];
         
         
         

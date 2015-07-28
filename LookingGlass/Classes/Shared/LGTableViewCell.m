@@ -110,7 +110,7 @@
         rowNumberViewTextLabel.font             = [UIFont systemFontOfSize:10];
         rowNumberViewTextLabel.textColor        = [UIColor whiteColor];
         rowNumberViewTextLabel.textAlignment    = UITextAlignmentCenter;
-        rowNumberViewTextLabel.text             = [NSString stringWithFormat:@"%d", self.rowNumber];
+        rowNumberViewTextLabel.text             = [NSString stringWithFormat:@"%ld", (long)self.rowNumber];
         
     }
      
@@ -120,7 +120,7 @@
 
 - (void)setRowNumber:(NSInteger)newRowNumber
 {
-    if (OBJECT_DEBUG) [self logObjectVariables:[NSString stringWithFormat:@"setRowNumber(%d)", newRowNumber]];
+    if (OBJECT_DEBUG) [self logObjectVariables:[NSString stringWithFormat:@"setRowNumber(%ld)", (long)newRowNumber]];
 
     rowNumber = newRowNumber;
     
